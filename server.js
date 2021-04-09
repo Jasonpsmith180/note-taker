@@ -1,10 +1,15 @@
+// Load dependencies
 const express = require('express');
-
 const PORT = process.env.PORT || 3001;
 const app = express();
-
 const htmlRoutes = require('./routes/htmlRoutes');
 
+// Express middleware
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Routes
 app.use('/', htmlRoutes);
 
 app.listen(PORT, () => {
